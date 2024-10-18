@@ -1,0 +1,364 @@
+{
+    "products": [
+      {
+        "name": "Espresso",
+        "ingredients": [
+          {"name": "Coffee", "quantity": "22 gr"},
+          {"name": "Water", "quantity": "60 ml"}
+        ]
+      },
+      {
+        "name": "Americano",
+        "ingredients": [
+          {"name": "Espresso", "quantity": "60 ml"},
+          {"name": "Water", "quantity": "120 ml"}
+        ]
+      },
+      {
+        "name": "Latte",
+        "ingredients": [
+          {"name": "Espresso", "quantity": "30 ml"},
+          {"name": "Milk", "quantity": "180 ml"}
+        ]
+      },
+      {
+        "name": "Cappuccino",
+        "ingredients": [
+          {"name": "Espresso", "quantity": "30 ml"},
+          {"name": "Milk", "quantity": "120 ml"}
+        ]
+      },
+      {
+        "name": "Macchiato",
+        "ingredients": [
+          {"name": "Espresso", "quantity": "30 ml"},
+          {"name": "Milk", "quantity": "60 ml"}
+        ]
+      },
+      {
+        "name": "Mocha",
+        "ingredients": [
+          {"name": "Espresso", "quantity": "30 ml"},
+          {"name": "Milk", "quantity": "180 ml"},
+          {"name": "Chocolate syrup", "quantity": "20 gr"}
+        ]
+      },
+      {
+        "name": "Flat white",
+        "ingredients": [
+          {"name": "Espresso", "quantity": "30 ml"},
+          {"name": "Milk", "quantity": "160 ml"}
+        ]
+      },
+      {
+        "name": "Affogato",
+        "ingredients": [
+          {"name": "Espresso", "quantity": "30 ml"},
+          {"name": "Ice-cream", "quantity": "60 gr"}
+        ]
+      },
+      {
+        "name": "Caramel macchiato",
+        "ingredients": [
+          {"name": "Espresso", "quantity": "30 ml"},
+          {"name": "Milk", "quantity": "240 ml"},
+          {"name": "Caramel sauce", "quantity": "20 gr"}
+        ]
+      },
+      {
+        "name": "Misto",
+        "ingredients": [
+          {"name": "Espresso", "quantity": "30 ml"},
+          {"name": "Water", "quantity": "240 ml"},
+          {"name": "Milk", "quantity": "60 ml"}
+        ]
+      },
+      {
+        "name": "Cortado",
+        "ingredients": [
+          {"name": "Espresso", "quantity": "30 ml"},
+          {"name": "Milk", "quantity": "30 ml"}
+        ]
+      },
+      {
+        "name": "Black tea",
+        "ingredients": [
+          {"name": "Black tea loose leaf", "quantity": "3 gr"},
+          {"name": "Water", "quantity": "240 ml"}
+        ]
+      },
+      {
+        "name": "Green tea",
+        "ingredients": [
+          {"name": "Green tea loose leaf", "quantity": "3 gr"},
+          {"name": "Water", "quantity": "240 ml"}
+        ]
+      },
+      {
+        "name": "Sour tea",
+        "ingredients": [
+          {"name": "Dried hibiscus flowers", "quantity": "8 gr"},
+          {"name": "Water", "quantity": "240 ml"}
+        ]
+      },
+      {
+        "name": "Mint tea",
+        "ingredients": [
+          {"name": "Dried mint leaf", "quantity": "3 gr"},
+          {"name": "Water", "quantity": "240 ml"}
+        ]
+      },
+      {
+        "name": "Earl grey tea",
+        "ingredients": [
+          {"name": "Black tea loose leaf", "quantity": "5 gr"},
+          {"name": "Water", "quantity": "240 ml"},
+          {"name": "Honey", "quantity": "10 gr"}
+        ]
+      },
+      {
+        "name": "Ginger tea",
+        "ingredients": [
+          {"name": "Dried ginger root", "quantity": "15 gr"},
+          {"name": "Water", "quantity": "240 ml"}
+        ]
+      },
+      {
+        "name": "Chocolate cake",
+        "ingredients": [
+          {"name": "All-purpose flour", "quantity": "240 gr"},
+          {"name": "Sugar", "quantity": "400 gr"},
+          {"name": "Cocoa powder", "quantity": "75 gr"},
+          {"name": "Baking powder", "quantity": "10 gr"},
+          {"name": "Baking soda", "quantity": "8 gr"},
+          {"name": "Salt", "quantity": "5 gr"},
+          {"name": "Eggs", "quantity": "2"},
+          {"name": "Milk", "quantity": "240 ml"},
+          {"name": "Vegetable oil", "quantity": "240 ml"},
+          {"name": "Vanilla extract", "quantity": "10 ml"}
+        ]
+      },
+      {
+        "name": "Lemon cake",
+        "ingredients": [
+          {"name": "All-purpose flour", "quantity": "240 gr"},
+          {"name": "Sugar", "quantity": "300 gr"},
+          {"name": "Baking powder", "quantity": "10 gr"},
+          {"name": "Salt", "quantity": "3 gr"},
+          {"name": "Butter", "quantity": "225 gr"},
+          {"name": "Eggs", "quantity": "4"},
+          {"name": "Milk", "quantity": "180 ml"},
+          {"name": "Lemon juice", "quantity": "60 ml"}
+        ]
+      },
+      {
+        "name": "Carrot cake",
+        "ingredients": [
+          {"name": "All-purpose flour", "quantity": "240 gr"},
+          {"name": "Sugar", "quantity": "400 gr"},
+          {"name": "Baking powder", "quantity": "10 gr"},
+          {"name": "Baking soda", "quantity": "8 gr"},
+          {"name": "Salt", "quantity": "5 gr"},
+          {"name": "Ground cinnamon", "quantity": "5 gr"},
+          {"name": "Ground ginger", "quantity": "2 gr"},
+          {"name": "Eggs", "quantity": "4"},
+          {"name": "Vegetable oil", "quantity": "360 ml"},
+          {"name": "Grated carrots", "quantity": "300 gr"}
+        ]
+      },
+      {
+        "name": "Strawberry cake",
+        "ingredients": [
+          {"name": "All-purpose flour", "quantity": "125 gr"},
+          {"name": "Sugar", "quantity": "10 gr"},
+          {"name": "Baking powder", "quantity": "2.5 gr"},
+          {"name": "Salt", "quantity": "1.25 gr"},
+          {"name": "Butter", "quantity": "50 ml"},
+          {"name": "Cream", "quantity": "62.5 gr"},
+          {"name": "Strawberries", "quantity": "340 gr"}
+        ]
+      },
+      {
+        "name": "Red velvet cake",
+        "ingredients": [
+          {"name": "All-purpose flour", "quantity": "240 gr"},
+          {"name": "Salt", "quantity": "2.5 gr"},
+          {"name": "Sugar", "quantity": "200 gr"},
+          {"name": "Cocoa powder", "quantity": "75 gr"},
+          {"name": "Baking soda", "quantity": "50 gr"},
+          {"name": "Milk", "quantity": "250 ml"},
+          {"name": "Vegetable oil", "quantity": "125 ml"},
+          {"name": "Water", "quantity": "100 ml"},
+          {"name": "Eggs", "quantity": "2"},
+          {"name": "Vanilla extract", "quantity": "5 ml"}
+        ]
+      },
+      {
+        "name": "Cheesecake",
+        "ingredients": [
+          {"name": "Graham cracker crumbs", "quantity": "150 gr"},
+          {"name": "Sugar", "quantity": "300 gr"},
+          {"name": "Butter", "quantity": "115 gr"},
+          {"name": "Cream cheese", "quantity": "9.6 gr"},
+          {"name": "Cream", "quantity": "240 ml"},
+          {"name": "Eggs", "quantity": "4"},
+          {"name": "Vanilla extract", "quantity": "10 ml"},
+          {"name": "Lemon juice", "quantity": "15 ml"}
+        ]
+      },
+      {
+        "name": "Chocolate milkshake",
+        "ingredients": [
+          {"name": "Milk", "quantity": "250 ml"},
+          {"name": "Ice-cream", "quantity": "125 gr"},
+          {"name": "Chocolate syrup", "quantity": "40 ml"},
+          {"name": "Vanilla extract", "quantity": "15 ml"}
+        ]
+      },
+      {
+        "name": "Vanilla milkshake",
+        "ingredients": [
+          {"name": "Milk", "quantity": "250 ml"},
+          {"name": "Ice-cream", "quantity": "125 gr"},
+          {"name": "Vanilla extract", "quantity": "15 ml"}
+        ]
+      },
+      {
+        "name": "Coffee milkshake",
+        "ingredients": [
+          {"name": "Milk", "quantity": "250 ml"},
+          {"name": "Ice-cream", "quantity": "125 gr"},
+          {"name": "Coffee", "quantity": "30 ml"},
+          {"name": "Sugar", "quantity": "5 gr"}
+        ]
+      },
+      {
+        "name": "Strawberry milkshake",
+        "ingredients": [
+          {"name": "Milk", "quantity": "250 ml"},
+          {"name": "Ice-cream", "quantity": "125 gr"},
+          {"name": "Strawberries", "quantity": "150 gr"},
+          {"name": "Sugar", "quantity": "5 ml"}
+        ]
+      },
+      {
+        "name": "Banana milkshake",
+        "ingredients": [
+          {"name": "Milk", "quantity": "250 ml"},
+          {"name": "Ice-cream", "quantity": "125 gr"},
+          {"name": "Banana", "quantity": "1"},
+          {"name": "Honey", "quantity": "15 ml"}
+        ]
+      },
+      {
+        "name": "Strawberry banana smoothie",
+        "ingredients": [
+          {"name": "Strawberries", "quantity": "250 gr"},
+          {"name": "Banana", "quantity": "1"},
+          {"name": "Milk", "quantity": "125 ml"},
+          {"name": "Yogurt", "quantity": "62.5 ml"},
+          {"name": "Honey", "quantity": "125 ml"},
+          {"name": "Water", "quantity": "12.5 ml"}
+        ]
+      },
+      {
+        "name": "Chocolate banana smoothie",
+        "ingredients": [
+          {"name": "Banana", "quantity": "1"},
+          {"name": "Milk", "quantity": "125 gr"},
+          {"name": "Water", "quantity": "12.5 ml"},
+          {"name": "Ice-cream", "quantity": "125 gr"},
+          {"name": "Chocolate syrup", "quantity": "15 ml"}
+        ]
+      },
+      {
+        "name": "Mango smoothie",
+        "ingredients": [
+          {"name": "Mango", "quantity": "250 gr"},
+          {"name": "Milk", "quantity": "125 ml"},
+          {"name": "Yogurt", "quantity": "62.5 ml"},
+          {"name": "Honey", "quantity": "12.5 ml"},
+          {"name": "Water", "quantity": "12.5 ml"}
+        ]
+      },
+      {
+        "name": "Peanut (butter) banana smoothie",
+        "ingredients": [
+          {"name": "Peanut butter", "quantity": "25 gr"},
+          {"name": "Banana", "quantity": "1"},
+          {"name": "Milk", "quantity": "125 gr"},
+          {"name": "Yogurt", "quantity": "62.5 gr"},
+          {"name": "Honey", "quantity": "12.5 ml"},
+          {"name": "Water", "quantity": "12.5 ml"}
+        ]
+      },
+      {
+        "name": "Ice tea",
+        "ingredients": [
+          {"name": "Black tea loose leaf", "quantity": "14 gr"},
+          {"name": "Water", "quantity": "2 Liter"}
+        ]
+      },
+      {
+        "name": "Ice coffee",
+        "ingredients": [
+          {"name": "Coffee", "quantity": "15 gr"},
+          {"name": "Water", "quantity": "215 ml"},
+          {"name": "Milk", "quantity": "125 ml"},
+          {"name": "Sugar", "quantity": "5 gr"}
+        ]
+      },
+      {
+        "name": "Lemonade",
+        "ingredients": [
+          {"name": "Lemon juice", "quantity": "240 ml"},
+          {"name": "Sugar", "quantity": "200 gr"},
+          {"name": "Water", "quantity": "1.4 Liter"}
+        ]
+      },
+      {
+        "name": "Mojito",
+        "ingredients": [
+          {"name": "Sugar", "quantity": "200 gr"},
+          {"name": "Dried mint leaf", "quantity": "3 gr"},
+          {"name": "Lemon juice", "quantity": "120 ml"},
+          {"name": "Water", "quantity": "1.4 Liter"}
+        ]
+      },
+      {
+        "name": "Frappuccino",
+        "ingredients": [
+          {"name": "Milk", "quantity": "250 ml"},
+          {"name": "Ice-cream", "quantity": "125 gr"},
+          {"name": "Chocolate syrup", "quantity": "40 ml"},
+          {"name": "Vanilla extract", "quantity": "15 ml"}
+        ]
+      },
+      {
+        "name": "Honey & Milk",
+        "ingredients": [
+          {"name": "Milk", "quantity": "240 ml"},
+          {"name": "Honey", "quantity": "20 ml"}
+        ]
+      },
+      {
+        "name": "Hot chocolate",
+        "ingredients": [
+          {"name": "Cocoa powder", "quantity": "10 gr"},
+          {"name": "Sugar", "quantity": "25 gr"},
+          {"name": "Milk", "quantity": "240 ml"},
+          {"name": "Vanilla extract", "quantity": "2 ml"}
+        ]
+      },
+      {
+        "name": "Chocolate Milk",
+        "ingredients": [
+          {"name": "Cocoa powder", "quantity": "15 gr"},
+          {"name": "Sugar", "quantity": "25 gr"},
+          {"name": "Milk", "quantity": "240 ml"},
+          {"name": "Vanilla extract", "quantity": "2.5 ml"}
+        ]
+      }
+    ]
+  }
+  
