@@ -7,15 +7,19 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class AppsManager {
-    private List<String[]> data;
+    private final List<String[]> data;
     private String[] headers;
-    private Map<String, List<String[]>> columnIndexMap;
+    private final Map<String, List<String[]>> columnIndexMap;
 
-    public AppsManager() {
+    public AppsManager(String csvFile) {
         data = new ArrayList<>();
         columnIndexMap = new HashMap<>();
+
+        loadCSV(csvFile);
     }
 
+
+    // Loads the csv file at the specified path
     public void loadCSV(String filePath) {
         try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
             headers = reader.readNext();
@@ -31,32 +35,46 @@ public class AppsManager {
         }
     }
 
-    public List<String[]> getData() {
-        return data;
-    }
-
-    public Optional<String[]> findTitle(String title) {
-        return data.stream()
-                .filter(row -> row.length > 0 && row[2].equalsIgnoreCase(title))
-                .findFirst();
-    }
 
 
-    public List<String[]> filterFreeApps() {
-        return columnIndexMap.get("Price").stream()
-                .filter(row -> row.length > 0 && row[Headers.Price.index].equals("0.0"))
-                .collect(Collectors.toList());
-    }
+    public List<String> getColumn(String column) {
+        int columnIndex = Arrays.asList(headers).indexOf(column);
 
-
-    public List<String[]> filterByColumn(String column, String value) {
-        if (!columnIndexMap.containsKey(column)) {
-            throw new IllegalArgumentException("Column Not Found: " + column);
+        if (columnIndex == -1) {
+            return Collections.emptyList();
         }
 
-        return columnIndexMap.get(column).stream()
-                .filter(row -> row.length > 0 && row[Arrays.asList(headers).indexOf(column)].equalsIgnoreCase(value))
+        return data.stream()
+                .map(row -> row[columnIndex])
                 .collect(Collectors.toList());
+    }
+
+
+
+    public String[] getFilteredHeaders() {
+        return new String[] {
+            Headers.Title.name(),
+            Headers.DeveloperName.name(),
+            Headers.Genre.name(),
+            Headers.ContentRating.name(),
+            Headers.ReviewsAverage.name()
+        };
+    }
+
+    public List<String[]> filterImportantInformation() {
+        return data.stream()
+                .map(row -> new String[] {
+                        row[Headers.Title.index],
+                        row[Headers.DeveloperName.index],
+                        row[Headers.Genre.index],
+                        row[Headers.ContentRating.index],
+                        row[Headers.ReviewsAverage.index]
+                })
+                .collect(Collectors.toList());
+    }
+
+    public String[] getCompleteRowData(int rowIndex) {
+        return data.get(rowIndex);
     }
 
 
