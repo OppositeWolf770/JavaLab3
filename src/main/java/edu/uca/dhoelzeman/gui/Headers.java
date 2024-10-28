@@ -1,0 +1,30 @@
+package edu.uca.dhoelzeman.gui;
+
+public enum Headers {
+    pkgname,
+    Ratings,
+    Title,
+    FourStarRatings,
+    DeveloperAddress,
+    LastUpdated,
+    ReviewsAverage,
+    Price,
+    ThreeStarRatings,
+    PrivacyPolicyLink,
+    Genre,
+    FiveStarRatings,
+    OneStarRatings,
+    Url,
+    ContentRating,
+    CurrentVersion,
+    DeveloperEmail,
+    AndroidVersion,
+    DeveloperWebsite,
+    DeveloperName,
+    FileSize,
+    TwoStarRatings,
+    Downloads,
+    ID,
+    permission_2,
+    litscore
+}

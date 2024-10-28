@@ -1,6 +1,7 @@
 package edu.uca.dhoelzeman.logic;
 
 import com.opencsv.CSVReader;
+import edu.uca.dhoelzeman.gui.Headers;
 
 import java.io.*;
 import java.util.*;
@@ -64,53 +65,26 @@ public class AppsManager {
     public List<String[]> filterImportantInformation() {
         return data.stream()
                 .map(row -> new String[] {
-                        row[Headers.Title.index],
-                        row[Headers.DeveloperName.index],
-                        row[Headers.Genre.index],
-                        row[Headers.ContentRating.index],
-                        row[Headers.ReviewsAverage.index]
+                        row[Headers.Title.ordinal()],
+                        row[Headers.DeveloperName.ordinal()],
+                        row[Headers.Genre.ordinal()],
+                        row[Headers.ContentRating.ordinal()],
+                        row[Headers.ReviewsAverage.ordinal()]
                 })
                 .collect(Collectors.toList());
     }
 
-    public String[] getCompleteRowData(int rowIndex) {
-        return data.get(rowIndex);
+    public String[] getCompleteRowData(String appName) {
+        return data.stream()
+                .filter(app -> Objects.equals(app[Headers.Title.ordinal()], appName))
+                .findFirst()
+                .orElse(null);
     }
 
 
-
-    public enum Headers {
-        pkgname(0),
-        Ratings(1),
-        Title(2),
-        FourStarRatings(3),
-        DeveloperAddress(4),
-        LastUpdated(5),
-        ReviewsAverage(6),
-        Price(7),
-        ThreeStarRatings(8),
-        PrivacyPolicyLink(9),
-        Genre(10),
-        FiveStarRatings(11),
-        OneStarRatings(12),
-        Url(13),
-        ContentRating(14),
-        CurrentVersion(15),
-        DeveloperEmail(16),
-        AndroidVersion(17),
-        DeveloperWebsite(18),
-        DeveloperName(19),
-        FileSize(20),
-        TwoStarRatings(21),
-        Downloads(22),
-        ID(23),
-        permission_2(24),
-        litscore(25);
-
-        public final int index;
-
-        Headers(int index) {
-            this.index = index;
-        }
+    public List<String[]> getPageData(int page, int rowsPerPage) {
+        int start = (page - 1) * rowsPerPage;
+        int end = Math.min(start + rowsPerPage, data.size());
+        return data.subList(start, end);
     }
 }

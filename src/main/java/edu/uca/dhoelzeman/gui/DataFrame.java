@@ -1,42 +1,76 @@
 package edu.uca.dhoelzeman.gui;
 
 import edu.uca.dhoelzeman.logic.AppsManager;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.Plot;
+import org.jfree.chart.plot.PlotRenderingInfo;
+import org.jfree.chart.plot.PlotState;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 public class DataFrame {
-    public static final AppsManager appsManager = new AppsManager("src\\data.csv");
-    public static final int SCROLL_SPEED = 16;
+    private static AppsManager appsManager;
+    private static FilterPanel filterPanel;
+    private static DetailsPanel detailsPanel;
+    private static TablePanel tablePanel;
 
     public static void main(String[] args) {
-        var dataFrame = new JFrame("Recipes") {
+        var dataFrame = new JFrame("Android Apps") {
             {
-                setSize(new Dimension(1000, 800));
-//                setExtendedState(JFrame.MAXIMIZED_BOTH);
-//                setUndecorated(true);
+//                setSize(new Dimension(1000, 800));
+                setExtendedState(JFrame.MAXIMIZED_BOTH);
                 setLayout(new BorderLayout());
-//                setLocationRelativeTo(null);
+                setLocationRelativeTo(null);
                 setVisible(true);
-//                setResizable(false);
+                setResizable(false);
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
         };
 
+//        var chart = new JFreeChart("Applications Overview", new Plot() {
+//            @Override
+//            public String getPlotType() {
+//                return "";
+//            }
+//
+//            @Override
+//            public void draw(Graphics2D graphics2D, Rectangle2D rectangle2D, Point2D point2D, PlotState plotState, PlotRenderingInfo plotRenderingInfo) {
+//
+//            }
+//        });
 
-        // FilterPanel to hold controls to manipulate the display of the data
+        // Loading screen while the table panel gets loaded in
+        var loadingPanel = new JPanel() {{
+                add(new JLabel("Loading Data. Please Wait..."));
+        }};
+        dataFrame.add(loadingPanel, BorderLayout.CENTER);
 
-        var filterPanel = new FilterPanel();
-        dataFrame.add(filterPanel, BorderLayout.NORTH);
+        // Load the table panel in the background
+        new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() {
+                appsManager = new AppsManager("src\\data.csv");
 
-        var detailsPanel = new DetailsPanel();
-        dataFrame.add(detailsPanel, BorderLayout.SOUTH);
+                return null;
+            }
 
-        var tablePanel = new TablePanel(appsManager, detailsPanel);
-        dataFrame.add(tablePanel, BorderLayout.CENTER);
+            @Override
+            protected void done() {
+                detailsPanel = new DetailsPanel();
+                tablePanel = new TablePanel(appsManager, detailsPanel, dataFrame);
+                filterPanel = new FilterPanel(tablePanel);
 
+                dataFrame.remove(loadingPanel);
+                dataFrame.add(filterPanel, BorderLayout.NORTH);
+                dataFrame.add(detailsPanel, BorderLayout.SOUTH);
+                dataFrame.add(tablePanel, BorderLayout.CENTER);
 
-        dataFrame.revalidate();
-        dataFrame.repaint();
+                dataFrame.revalidate();
+                dataFrame.repaint();
+            }
+        }.execute();
     }
 }
