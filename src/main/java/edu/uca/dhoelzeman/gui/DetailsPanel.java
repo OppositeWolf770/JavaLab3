@@ -2,8 +2,6 @@ package edu.uca.dhoelzeman.gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -21,15 +19,19 @@ public class DetailsPanel extends JPanel {
 
         var border = BorderFactory.createLineBorder(Color.black);
 
+        // Set the layout for the panels
         generalPanel.setLayout(new BorderLayout());
-        generalPanel.setBorder(border);
         ratingsPanel.setLayout(new BorderLayout());
-        ratingsPanel.setBorder(border);
         developerPanel.setLayout(new BorderLayout());
-        developerPanel.setBorder(border);
         technicalPanel.setLayout(new BorderLayout());
+
+        // Add border to the panels
+        generalPanel.setBorder(border);
+        ratingsPanel.setBorder(border);
+        developerPanel.setBorder(border);
         technicalPanel.setBorder(border);
 
+        // Add the panels to the DetailsPanel
         add(generalPanel);
         add(ratingsPanel);
         add(developerPanel);
@@ -108,12 +110,13 @@ public class DetailsPanel extends JPanel {
             }
         });
 
-
         revalidate();
         repaint();
     }
 
-    class LinkLabel extends JLabel {
+
+    // A label that holds a hyperlink to a website
+    static class LinkLabel extends JLabel {
         LinkLabel(Headers header, String uri) throws URISyntaxException {
             setCursor(new Cursor(Cursor.HAND_CURSOR));
             setText("<HTML><FONT color=\"#000099\"><U>" + header + "</U></FONT></HTML>");
@@ -122,7 +125,11 @@ public class DetailsPanel extends JPanel {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     try {
-                        Desktop.getDesktop().browse(new URI(uri));
+                        if (uri.isEmpty()) {
+                            Desktop.getDesktop().browse(new URI("https://nuttyapps.com/privacypolicy/"));
+                        } else {
+                            Desktop.getDesktop().browse(new URI(uri));
+                        }
                     } catch (IOException | URISyntaxException ex) {
                         ex.printStackTrace();
                     }
@@ -130,27 +137,4 @@ public class DetailsPanel extends JPanel {
             });
         }
     }
-//
-//    class OpenUrlAction implements ActionListener {
-//        private URI uri;
-//
-//        public OpenUrlAction(URI uri) {
-//            this.uri = uri;
-//        }
-//
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            open(uri);
-//        }
-//    }
-//
-//    private static void open(URI uri) {
-//        if (Desktop.isDesktopSupported()) {
-//            try {
-//                Desktop.getDesktop().browse(uri);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 }

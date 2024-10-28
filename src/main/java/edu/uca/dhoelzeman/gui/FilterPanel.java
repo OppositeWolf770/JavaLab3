@@ -1,42 +1,40 @@
 package edu.uca.dhoelzeman.gui;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 public class FilterPanel extends JPanel {
     private final JTextField[] filterFields;
-    private final JTable table;
 
     FilterPanel(TablePanel tablePanel) {
-        table = tablePanel.getTable();
+        JTable table = tablePanel.getTable();
+        JButton applyFiltersButton = new JButton("Apply Filters");
+        JButton clearFiltersButton = new JButton("Clear Filters");
         filterFields = new JTextField[table.getColumnCount()];
 
         for (int i = 0; i < filterFields.length; i++) {
+            JPanel filterPanel = new JPanel();
+            filterPanel.setLayout(new BoxLayout(filterPanel, BoxLayout.Y_AXIS));
+
             filterFields[i] = new JTextField(10);
+            filterFields[i].addActionListener(_ -> tablePanel.applyFilters(filterFields));
 
-
-            add(filterFields[i]);
+            filterPanel.add(new JLabel(table.getColumnName(i) + " Filter"));
+            filterPanel.add(filterFields[i]);
+            add(filterPanel);
         }
 
-        // Add the Document listeners to the filterFields
-        for (int i = 0; i < filterFields.length; i++) {
-            filterFields[i].getDocument().addDocumentListener(new DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    tablePanel.applyFilters(filterFields);
-                }
+        add(applyFiltersButton);
+        add(clearFiltersButton);
 
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    tablePanel.applyFilters(filterFields);
-                }
+        applyFiltersButton.addActionListener(_ -> tablePanel.applyFilters(filterFields));
 
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    tablePanel.applyFilters(filterFields);
-                }
-            });
-        }
+        // Clear the filters when the Clear Filters button is clicked
+        clearFiltersButton.addActionListener(_ -> {
+            for (int i = 0; i < filterFields.length; i++) {
+                filterFields[i].setText("");
+            }
+
+            tablePanel.applyFilters(filterFields);
+        });
     }
 }

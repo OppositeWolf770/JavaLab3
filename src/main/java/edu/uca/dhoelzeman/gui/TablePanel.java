@@ -3,8 +3,6 @@ package edu.uca.dhoelzeman.gui;
 import edu.uca.dhoelzeman.logic.AppsManager;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -16,7 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.PatternSyntaxException;
 
 public class TablePanel extends JPanel {
     private final JTable table;
@@ -24,7 +21,6 @@ public class TablePanel extends JPanel {
     private final JDialog sortingDialog;
     private final Map<Integer, SortOrder> columnSortOrderMap;
     private final TableRowSorter<TableModel> sorter;
-//    private final JTextField[] filterFields;
 
     public TablePanel(AppsManager appsManager, DetailsPanel detailsPanel, JFrame parentFrame) {
         this.parentFrame = parentFrame;
@@ -33,42 +29,10 @@ public class TablePanel extends JPanel {
         this.columnSortOrderMap = new HashMap<>();
         this.sorter = new TableRowSorter<>(table.getModel());
         this.table.setRowSorter(sorter);
-//        this.filterFields = new JTextField[table.getColumnCount()];
 
         var tableHeader = table.getTableHeader();
-//        tableHeader.setLayout(new GridLayout(1, table.getColumnCount()));
 
-//        for (int i = 0; i < table.getColumnCount(); i++) {
-//            JPanel headerPanel = new JPanel(new BorderLayout());
-//            JLabel headerLabel = new JLabel(table.getColumnName(i));
-//            JTextField filterField = new JTextField();
-//            filterFields[i] = filterField;
-//
-//            headerPanel.add(headerLabel, BorderLayout.NORTH);
-//            headerPanel.add(filterField, BorderLayout.SOUTH);
-//            tableHeader.add(headerPanel);
-
-//            filterField.getDocument().addDocumentListener(new DocumentListener() {
-//                @Override
-//                public void insertUpdate(DocumentEvent e) {
-//                    applyFilters();
-//                }
-//
-//                @Override
-//                public void removeUpdate(DocumentEvent e) {
-//                    applyFilters();
-//                }
-//
-//                @Override
-//                public void changedUpdate(DocumentEvent e) {
-//                    applyFilters();
-//                }
-//            });
-//        }
-//
-//        revalidate();
-//        repaint();
-
+        // Sorts the table when the user clicks on a column header
         tableHeader.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -92,7 +56,7 @@ public class TablePanel extends JPanel {
         setLayout(new BorderLayout());
         add(new JScrollPane(table), BorderLayout.CENTER);
 
-        // Show app information for highlighted app in the details panel
+        // Show app information for highlighted app in the details panel when user clicks on a row
         table.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 int selectedRow = table.getSelectedRow();
@@ -109,10 +73,12 @@ public class TablePanel extends JPanel {
         });
     }
 
+    // Gets the current table information
     public JTable getTable() {
         return table;
     }
 
+    // Applies filters based on information in the provided filterFields
     public void applyFilters(JTextField[] filterFields) {
         List<RowFilter<Object, Object>> filters = new ArrayList<>();
         for (int i = 0; i < filterFields.length; i++) {
@@ -126,6 +92,7 @@ public class TablePanel extends JPanel {
     }
 
 
+    // Sorts the column in the table depending on its current sorting method
     private void sortTableByColumn(int column) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         List<RowSorter.SortKey> sortKeys = new ArrayList<>();
@@ -134,6 +101,7 @@ public class TablePanel extends JPanel {
         SortOrder currentOrder = columnSortOrderMap.getOrDefault(column, SortOrder.UNSORTED);
         SortOrder newOrder;
 
+        // Change the sortingOrder based on the currently selected sorting order
         switch (currentOrder) {
             case UNSORTED:
                 newOrder = SortOrder.ASCENDING;
@@ -145,6 +113,7 @@ public class TablePanel extends JPanel {
                 newOrder = SortOrder.UNSORTED;
         }
 
+        // Set the new table order if it is not unsorted
         if (newOrder != SortOrder.UNSORTED) {
             sortKeys.add(new RowSorter.SortKey(column, newOrder));
             sorter.setSortKeys(sortKeys);
@@ -156,6 +125,7 @@ public class TablePanel extends JPanel {
         columnSortOrderMap.put(column, newOrder);
     }
 
+    // Creates the sorting Dialog Modal
     private JDialog createSortingDialog(JFrame parentFrame) {
         JDialog sortingDialog = new JDialog(parentFrame, "Sorting", Dialog.ModalityType.APPLICATION_MODAL);
         sortingDialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
@@ -165,6 +135,7 @@ public class TablePanel extends JPanel {
         return sortingDialog;
     }
 
+    // Displays the Sorting Dialog Modal when the user clicks on a column header
     private void showSortingDialog() {
         SwingUtilities.invokeLater(() -> {
             parentFrame.setEnabled(false);
@@ -172,6 +143,7 @@ public class TablePanel extends JPanel {
         });
     }
 
+    // Hides the Sorting Dialog Modal when the sorting is complete
     private void hideSortingDialog() {
         SwingUtilities.invokeLater(() -> {
             sortingDialog.setVisible(false);

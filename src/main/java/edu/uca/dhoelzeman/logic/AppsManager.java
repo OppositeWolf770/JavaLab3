@@ -38,15 +38,10 @@ public class AppsManager {
 
 
 
-    public List<String> getColumn(String column) {
-        int columnIndex = Arrays.asList(headers).indexOf(column);
-
-        if (columnIndex == -1) {
-            return Collections.emptyList();
-        }
-
+    // Gets the specified column from the data
+    public List<String> getColumn(Headers header) {
         return data.stream()
-                .map(row -> row[columnIndex])
+                .map(row -> row[header.ordinal()])
                 .collect(Collectors.toList());
     }
 

@@ -1,46 +1,34 @@
 package edu.uca.dhoelzeman.gui;
 
 import edu.uca.dhoelzeman.logic.AppsManager;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.PlotState;
+import org.apache.commons.math.stat.descriptive.moment.Mean;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
+import java.util.stream.Collectors;
 
 public class DataFrame {
     private static AppsManager appsManager;
     private static FilterPanel filterPanel;
     private static DetailsPanel detailsPanel;
     private static TablePanel tablePanel;
+    private static ChartPanel chartPanel;
 
     public static void main(String[] args) {
         var dataFrame = new JFrame("Android Apps") {
             {
-//                setSize(new Dimension(1000, 800));
-                setExtendedState(JFrame.MAXIMIZED_BOTH);
+                setSize(new Dimension(1800, 1000));
+                setExtendedState(JFrame.MAXIMIZED_HORIZ);
                 setLayout(new BorderLayout());
                 setLocationRelativeTo(null);
                 setVisible(true);
-                setResizable(false);
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
         };
-
-//        var chart = new JFreeChart("Applications Overview", new Plot() {
-//            @Override
-//            public String getPlotType() {
-//                return "";
-//            }
-//
-//            @Override
-//            public void draw(Graphics2D graphics2D, Rectangle2D rectangle2D, Point2D point2D, PlotState plotState, PlotRenderingInfo plotRenderingInfo) {
-//
-//            }
-//        });
 
         // Loading screen while the table panel gets loaded in
         var loadingPanel = new JPanel() {{
@@ -63,10 +51,33 @@ public class DataFrame {
                 tablePanel = new TablePanel(appsManager, detailsPanel, dataFrame);
                 filterPanel = new FilterPanel(tablePanel);
 
+                var dataset = new DefaultCategoryDataset();
+                var reviewsAverage = appsManager.getColumn(Headers.ReviewsAverage);
+
+                var doubleReviewsAverage = reviewsAverage.stream()
+                        .map(Double::parseDouble)
+                        .toList();
+
+
+                Mean mean = new Mean();
+                double meanValue = mean.evaluate(doubleReviewsAverage.stream().mapToDouble(Double::doubleValue).toArray());
+
+                dataset.addValue(meanValue, "Average Ratings", "Average Ratings");
+
+                chartPanel = new ChartPanel(ChartFactory.createBarChart(
+                        "Sample Chart",
+                        "Category",
+                        "Value",
+                        dataset,
+                        PlotOrientation.VERTICAL,
+                        true, true, false
+                ));
+
                 dataFrame.remove(loadingPanel);
                 dataFrame.add(filterPanel, BorderLayout.NORTH);
                 dataFrame.add(detailsPanel, BorderLayout.SOUTH);
                 dataFrame.add(tablePanel, BorderLayout.CENTER);
+                dataFrame.add(chartPanel, BorderLayout.EAST);
 
                 dataFrame.revalidate();
                 dataFrame.repaint();
