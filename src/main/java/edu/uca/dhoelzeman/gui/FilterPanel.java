@@ -2,6 +2,7 @@ package edu.uca.dhoelzeman.gui;
 
 import javax.swing.*;
 
+// Panel that contains the filter fields for the tablez
 public class FilterPanel extends JPanel {
     private final JTextField[] filterFields;
 
@@ -11,6 +12,7 @@ public class FilterPanel extends JPanel {
         JButton clearFiltersButton = new JButton("Clear Filters");
         filterFields = new JTextField[table.getColumnCount()];
 
+        // Sets up each filter field and adds it to the panel
         for (int i = 0; i < filterFields.length; i++) {
             JPanel filterPanel = new JPanel();
             filterPanel.setLayout(new BoxLayout(filterPanel, BoxLayout.Y_AXIS));
@@ -26,6 +28,7 @@ public class FilterPanel extends JPanel {
         add(applyFiltersButton);
         add(clearFiltersButton);
 
+        // Apply the filters when the Apply Filters button is clicked
         applyFiltersButton.addActionListener(_ -> tablePanel.applyFilters(filterFields));
 
         // Clear the filters when the Clear Filters button is clicked

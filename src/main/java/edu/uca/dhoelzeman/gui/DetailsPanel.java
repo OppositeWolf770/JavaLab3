@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+// Panel that displays the details of the selected app
 public class DetailsPanel extends JPanel {
     private final JPanel generalPanel = new JPanel();
     private final JPanel ratingsPanel = new JPanel();
@@ -52,7 +53,7 @@ public class DetailsPanel extends JPanel {
         generalPanel.add(new JLabel("<html><u>App Info</u></html>", SwingConstants.CENTER), BorderLayout.NORTH);
         generalPanel.add(new JPanel() {
             {
-                String price = rowData[Headers.Price.ordinal()]; // The price of the app
+                String price = rowData[Headers.Price.ordinal()];
 
                 setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 

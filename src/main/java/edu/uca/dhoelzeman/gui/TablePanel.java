@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// Panel that displays the table of apps
 public class TablePanel extends JPanel {
     private final JTable table;
     private final JFrame parentFrame;
@@ -22,9 +23,10 @@ public class TablePanel extends JPanel {
     private final Map<Integer, SortOrder> columnSortOrderMap;
     private final TableRowSorter<TableModel> sorter;
 
+    // Constructor
     public TablePanel(AppsManager appsManager, DetailsPanel detailsPanel, JFrame parentFrame) {
         this.parentFrame = parentFrame;
-        this.table = new JTable(new DefaultTableModel(appsManager.filterImportantInformation().toArray(new Object[][]{}), appsManager.getFilteredHeaders()));
+        this.table = new JTable(appsManager.createTableModel());
         this.sortingDialog = createSortingDialog(parentFrame);
         this.columnSortOrderMap = new HashMap<>();
         this.sorter = new TableRowSorter<>(table.getModel());
@@ -40,7 +42,7 @@ public class TablePanel extends JPanel {
                 showSortingDialog();
                 new SwingWorker<Void, Void>() {
                     @Override
-                    protected Void doInBackground() throws Exception {
+                    protected Void doInBackground() {
                         sortTableByColumn(column);
                         return null;
                     }
